@@ -1,7 +1,15 @@
 # ReSukiSU `v4.2.0-rc3`: carrying the Samsung delta one release candidate forward
 
-**Status: rebased by hand, applies clean to the tag, nothing compiled, nothing published, not
-device-tested.**
+**Patch-rebase status:** rebased by hand and applies clean to the tag. When
+this record was first written, no rc3 artifacts had been compiled or
+published. The subsequent S25 FE pair reuse is noted below; BZF5 is not
+device-tested.
+
+**Subsequent target use:** the S25 FE BZF5 profile reuses the existing S921B
+ReSukiSU rc3 module/daemon pair after the module passed a manual-relocation
+audit against the exact BZF5 kernel. This is artifact reuse, not a fresh rc3
+source build; the S25 FE port remains untested on-device. See
+[`SM-S731U1-S731U1UES8BZF5.md`](SM-S731U1-S731U1UES8BZF5.md).
 
 ReSukiSU tagged `v4.2.0-rc3` on 2026-09-22 (`239e1e88`, "manager: refine install page and other minimal
 changes (#417)"), nine days after the `v4.2.0-rc2` this flavour was ported onto. The delta in
@@ -182,12 +190,14 @@ still names `enum ucount_type` and only 5.16+ renamed `enum rlimit_type`. Declar
 an implicitly declared, incomplete type on 5.15 and clang fails the compile with `-Wvisibility`; the patch
 now selects it by `LINUX_VERSION_CODE`, matching `KernelSU-v3.3.0-samsung-kdp-rkp-defex.patch`.
 
-**What that does not establish.** Nothing was compiled: no module, no `ksud`, no DDK container, no
-`cargo`, and no device. The symbol audit (`kernel/check_symbol` against a recovered `vmlinux`) and the
-relocation/CRC audit were not run against this tree. The validation bar in the rc2 record - late-load
-ending in `u:r:ksu:s0`, `su` surviving enforcing, the `ksu_handle_setuid(work->new_uid, work->old_uid)`
-hand-off being observed to crown a manager - is owed in full before a pair built from this patch is
-called tested.
+**What this patch check does not establish.** The rc3 source tree was not
+rebuilt as part of the rebase. The later S25 FE BZF5 port reused an existing
+rc3 pair and audited its module against the recovered BZF5 `vmlinux`; that
+does not establish device behavior or rebuild provenance. In particular, no
+BZF5 device test has been performed. The validation bar in the rc2 record -
+late-load ending in `u:r:ksu:s0`, `su` surviving enforcing, and the
+`ksu_handle_setuid(work->new_uid, work->old_uid)` hand-off being observed to
+crown a manager - is still owed before this BZF5 pair is called tested.
 
 ## Publishing
 

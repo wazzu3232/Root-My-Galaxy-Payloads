@@ -6,7 +6,7 @@ This repository contains the device-specific native side of
 - exact firmware profiles and offsets;
 - the app-domain CVE-2026-43499 exploit source and compiled payload;
 - the app bootstrap helper source;
-- the verified KernelSU late-load build artifacts;
+- the verified KernelSU-family late-load build artifacts;
 - the support feed consumed by the application.
 
 It intentionally does not contain Android application source code.
@@ -16,6 +16,7 @@ It intentionally does not contain Android application source code.
 | Payload | Compatible models | Kernel version | Status |
 | --- | --- | --- | --- |
 | `galaxy-s25-series-2026-06-07` | Galaxy S25, S25+, S25 Edge, and S25 Ultra regional models | `6.6.98` | Device-tested |
+| `r13s-S731U1UES8BZF5-rsksu420` | Galaxy S25 FE `SM-S731U1` | `6.1.157` | Offline-validated ReSukiSU 4.2.0-rc3; hardware validation pending |
 | `e3q-S928USQS6DZF2` | Galaxy S24 Ultra `SM-S928U1` | `6.1.145` | Device-tested |
 | `e3q-S9280ZCS6DZF2` | Galaxy S24 Ultra China `SM-S9280` | `6.1.145` | Device-tested |
 | `e2s-S926BXXUEDZDR` | Galaxy S24+ `SM-S926B` | `6.1.157` | Device-tested |
@@ -30,6 +31,10 @@ It intentionally does not contain Android application source code.
 The S916B FZG1 profile is shell-only today. Its exact tracefs route works from `adb shell`, but direct app-domain execution is not supported. Root My Galaxy would need to delegate the native runner through an authorized shell bridge such as Shizuku. See [`artifacts/dm2q-S916BXXSAFZG1/README.md`](artifacts/dm2q-S916BXXSAFZG1/README.md).
 
 The S918B FZF5 profile is hardware-verified through the app's Shizuku mode (exploit, KernelSU late-load, granted `su` under enforcing). Its physical-P0 fallback also engages in unprivileged app-domain execution, but rooting without Shizuku is not yet hardware-confirmed. See [`docs/SM-S918B-S918BXXSAFZF5.md`](docs/SM-S918B-S918BXXSAFZF5.md).
+
+The SM-S731U1 BZF5 profile was built from the exact firmware kernel and
+audited offline with the ReSukiSU 4.2.0-rc3 module/daemon pair; it has not been
+tested on-device. See [`docs/SM-S731U1-S731U1UES8BZF5.md`](docs/SM-S731U1-S731U1UES8BZF5.md).
 
 Schema version 3 keeps each exploit and KernelSU artifact once. Its flat
 `models` and `kernelVersions` arrays define runtime compatibility. See

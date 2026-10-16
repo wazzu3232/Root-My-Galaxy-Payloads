@@ -1002,5 +1002,24 @@
         "version": "4.2.0-rc3"
       }
     }
-  ]
+  ,
+    {
+      "payloadId": "r13s-S731U1UES8BZF5-rsksu420",
+      "displayName": "Galaxy S25 FE | Kernel 6.1.157 | ReSukiSU 4.2.0-rc3 (test)",
+      "models": ["SM-S731U1"],
+      "kernelVersions": ["6.1.157"],
+      "flavor": "resukisu",
+      "requiresFreshP0Session": true,
+      "exploit": {
+        "url": "https://raw.githubusercontent.com/rushiranpise/Root-My-Galaxy-Payloads/main/artifacts/r13s-S731U1UES8BZF5/cve-2026-43499-app.so",
+        "size": 104128
+      },
+      "kernelsu": {
+        "url": "https://raw.githubusercontent.com/rushiranpise/Root-My-Galaxy-Payloads/main/kernelsu/ksud-rsksu-r13s-S731U1UES8BZF5-kdp",
+        "size": 4387176,
+        "sha256": "f034b18238d6bfdccf2ef01da7d7a531383b3501b83615b306947b925073e8e3",
+        "version": "4.2.0-rc3"
+      }
+    }
+]
 }
